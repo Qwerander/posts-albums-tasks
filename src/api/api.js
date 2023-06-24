@@ -13,17 +13,40 @@ export const apiRequest = axios.create({
 // получение постов
 export const getPosts = async () => {
   const response = await apiRequest.get('/posts');
-  return response
+  return response;
+};
+
+// изменение поста по id
+export const patchPost = async (id, data) => {
+  const response = await apiRequest.patch(`/posts/${id}`, data);
+  return response;
+};
+
+// удаление поста по id
+export const deletePost = async (id) => {
+  await apiRequest.delete(`/posts/${id}`);
 };
 
 // получение альбомов
 export const getAlbums = async () => {
   const response = await apiRequest.get('/albums');
-  return response
+  return response;
 };
 
 // получение задач
 export const getTodos = async () => {
   const response = await apiRequest.get('/todos');
-  return response
+  return response;
+};
+
+// получение пользователей
+export const getUsers = async () => {
+  const response = await apiRequest.get('/users');
+  return response;
+};
+
+// получение комментариев
+export const getComments = async (id) => {
+  const response = await apiRequest.get(`/comments?postId=${id}`);
+  return response;
 };

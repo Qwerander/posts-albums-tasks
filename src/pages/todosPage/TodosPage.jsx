@@ -8,7 +8,7 @@ export const TodosPage = () => {
 
     useEffect(() => {
         dispatch(fetchGetTodos());
-    }, []);
+    }, [dispatch]);
 
   return (
     <div>

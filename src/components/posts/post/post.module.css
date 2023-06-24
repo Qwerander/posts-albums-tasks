@@ -1,0 +1,15 @@
+.item svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.item ul {
+    text-align: right;
+}
+
+.author {
+    text-align: right;
+    font-weight: 500;
+    font-size: 12px;
+}

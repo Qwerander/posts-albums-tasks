@@ -7,7 +7,7 @@ export const AlbumsPage = () => {
 
     useEffect(() => {
       dispatch(fetchgetAlbums())
-    }, []);
+    }, [dispatch]);
 
   return (
     <div>
