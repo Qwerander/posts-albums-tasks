@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { EditForm } from '../editForm/EditForm';
 import { fetchDeleteAlbum, setFavotie } from '../../../store/slices/albumsSlice';
 import { ModalDeleteConfirum } from '../../posts/modal/ModalDeleteConfirum';
+import { Link } from 'react-router-dom';
 
 
 export const Album = ({ album, checked, onChange }) => {
@@ -37,7 +38,10 @@ export const Album = ({ album, checked, onChange }) => {
         ]}
       >
         <List.Item.Meta
-          title={!isEditMode && `${album.id}. ${album.title}`}
+          title={!isEditMode &&
+            <Link className={styles.link} to={`${album.id}`}>
+              {`${album.id}. ${album.title}`}
+            </Link>}
         />
         {isEditMode
           ? <EditForm

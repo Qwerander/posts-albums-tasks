@@ -1,9 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { deleteAlbum, getAlbums, getUsers, patchAlbum } from '../../api/api';
+import {
+  deleteAlbum,
+  getAlbums,
+  getPhotos,
+  getUsers,
+  patchAlbum,
+} from '../../api/api';
 
 const initialState = {
   albums: [],
   users: [],
+  photos: {},
   favoriteAlbums: {},
 };
 
@@ -36,6 +43,27 @@ export const fetchDeleteAlbum = createAsyncThunk(
     return id;
   }
 );
+
+export const fetchGetPhotos = createAsyncThunk(
+  'posts/photosByAlbum',
+  async () => {
+    const response = await getPhotos();
+
+    const photosByAlbum = response.data.reduce((acc, photo) => {
+      const albumId = photo.albumId;
+
+      if (!acc[albumId]) {
+        acc[albumId] = [];
+      }
+
+      acc[albumId].push(photo);
+
+      return acc;
+    }, {});
+
+    return photosByAlbum;
+  }
+)
 
 export const albumsSlice = createSlice({
   name: 'albums',
@@ -75,6 +103,9 @@ export const albumsSlice = createSlice({
         state.albums = state.albums.filter(
           (album) => album.id !== deletedAlbumId
         );
+      })
+      .addCase(fetchGetPhotos.fulfilled, (state, action) => {
+        state.photos = action.payload;
       });
   },
 });

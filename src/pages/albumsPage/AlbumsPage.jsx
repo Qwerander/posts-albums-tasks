@@ -5,6 +5,7 @@ import { AlbumsList } from "../../components/albums/albumsList/AlbumsList";
 import { Layout, Space } from 'antd';
 import { useState } from "react";
 import { Filters } from "../../components/posts/filters/Filters";
+import { Outlet } from "react-router-dom";
 
 export const AlbumsPage = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export const AlbumsPage = () => {
   const [onlyFavorite, setOnlyFavorite] = useState(false)
   const [reversList, setReversList] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const {albums, users } = useSelector(state => state.albums)
+  const { albums, users } = useSelector(state => state.albums)
   const favoriteAlbums = useSelector(state => state.albums.favoriteAlbums)
 
 
@@ -58,7 +59,6 @@ export const AlbumsPage = () => {
           albums={displayedAlbums}
         />
       </Space>
-
     </Layout>
 
   )

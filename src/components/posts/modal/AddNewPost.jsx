@@ -10,6 +10,7 @@ export const AddNewPost = ({ isOpen, setIsopen }) => {
             title="Add new post"
             open={isOpen}
             footer={null}
+            onCancel={() => setIsopen(false)}
         >
             <NewPostForm
                 setIsopen={setIsopen}

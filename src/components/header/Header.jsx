@@ -6,7 +6,7 @@ export const Header = () => {
   const { pathname } = useLocation()
 
   return (
-    <Menu selectedKeys={[pathname]} mode="horizontal">
+    <Menu selectedKeys={[pathname]} mode="horizontal" style={{justifyContent: 'center'}}>
       <Menu.Item key="/posts" onClick={() => navigate('/posts')}>
         Posts
       </Menu.Item>
