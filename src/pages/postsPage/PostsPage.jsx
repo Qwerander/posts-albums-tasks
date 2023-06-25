@@ -14,7 +14,7 @@ export const PostsPage = () => {
     const [onlyFavorite, setOnlyFavorite] = useState(false)
     const [reversList, setReversList] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const posts = useSelector(state => state.posts.posts)
+    const { posts, users } = useSelector(state => state.posts)
     const favoritePosts = useSelector(state => state.posts.favoritePosts)
 
     const handleUserSelectChange = (selectedUserIds) => {
@@ -46,7 +46,7 @@ export const PostsPage = () => {
 
     return (
         <Layout>
-            <Space direction="vertical" style={{marginBottom: '12px', padding: '50px 25px 50px'}}>
+            <Space direction="vertical" style={{ marginBottom: '12px', padding: '50px 25px 50px' }}>
                 <Button type="primary" onClick={() => setIsModalOpen(true)}>
                     + Add new post
                 </Button>
@@ -55,6 +55,7 @@ export const PostsPage = () => {
                     onSearch={handleSearchChange}
                     setOnlyFavorite={setOnlyFavorite}
                     setReversList={setReversList}
+                    users={users}
                 />
                 <PostsList
                     posts={displayedPosts}

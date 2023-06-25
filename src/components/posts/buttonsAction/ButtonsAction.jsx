@@ -1,6 +1,4 @@
 import { Button, Space } from 'antd';
-import { useDispatch } from 'react-redux';
-import { fetchDeletePost, setFavotie } from '../../../store/slices/postsSlice';
 import { useState } from 'react';
 import { ModalDeleteConfirum } from '../modal/ModalDeleteConfirum';
 

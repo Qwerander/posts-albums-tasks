@@ -2,7 +2,6 @@ import { Button, Form, Input } from 'antd';
 import React from 'react';
 import { useDispatch} from "react-redux";
 import { changeUserName, fetchPatchAlbum } from '../../../store/slices/albumsSlice';
-// import { changeUserName, fetchPatchPost } from '../../../store/slices/postsSlice';
 
 const layout = {
     labelCol: { span: 8 },

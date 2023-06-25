@@ -3,7 +3,6 @@ import { Checkbox } from 'antd';
 
 export const ShowFavorite = ({ setOnlyFavorite }) => {
     const onChange = (e) => {
-        // setOnlyFavorite(e.target.checked);
         setOnlyFavorite(e.target.checked);
     };
     return (

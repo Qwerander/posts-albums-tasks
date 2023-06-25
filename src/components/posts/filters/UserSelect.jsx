@@ -1,9 +1,7 @@
 
 import { Select, Tag } from 'antd';
-import { useSelector } from 'react-redux';
 
-export const UserSelect = ({onChangeUser}) => {
-    const users = useSelector(state => state.posts.users)
+export const UserSelect = ({onChangeUser, users}) => {
     const options = users.map(user => ({
         value: user.id,
         label: user.name

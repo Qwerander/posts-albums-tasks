@@ -3,7 +3,7 @@ import { Input } from 'antd';
 import React from 'react';
 const { Search } = Input;
 
-export const SearchPostTitle = ({ onSearch }) => {
+export const SearchTitle = ({ onSearch }) => {
     const handleSearchChange = (e) => {
         onSearch(e.target.value);
     };
