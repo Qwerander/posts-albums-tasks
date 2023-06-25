@@ -10,10 +10,10 @@ import {
 const initialState = {
   posts: [],
   comments: {},
+  favoritePosts: {}
 };
 
 export const fetchGetPosts = createAsyncThunk('posts/getPosts', async () => {
-  // Получаем посты
   const response = await getPosts();
   const posts = response.data;
 
@@ -65,6 +65,9 @@ export const postsSlice = createSlice({
         state.posts[postIndex].user.name = newName;
       }
     },
+    setFavotie: (state, action) => {
+      state.favoritePosts = {...state.favoritePosts, [action.payload.id]: action.payload.bool }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -90,6 +93,6 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { changeUserName } = postsSlice.actions;
+export const { changeUserName, setFavotie } = postsSlice.actions;
 
 export default postsSlice.reducer;

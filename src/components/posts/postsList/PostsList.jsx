@@ -3,10 +3,12 @@ import { Post } from "../post/Post"
 import styles from './postsLists.module.css'
 import { List } from 'antd';
 import { useEffect } from "react";
+import { ButtonsAction } from "../buttonsAction/ButtonsAction";
 
 export const PostsList = ({ posts }) => {
     const [pageSize, setPageSize] = useState(10)
     const [checkedItems, setCheckedItems] = useState({})
+    const showButtonsAction = Object.values(checkedItems).some(value => value === true);
 
     const onChange = (e, itemId) => {
         setCheckedItems({
@@ -27,25 +29,33 @@ export const PostsList = ({ posts }) => {
     }, [checkedItems])
 
     return (
-        <List
-            header={<h1 className={styles.title}>Посты</h1>}
-            itemLayout="vertical"
-            size="smal"
-            pagination={{
-                pageSize: pageSize,
-                showSizeChanger: true,
-                onShowSizeChange: (current, size) => setPageSize(size),
-                pageSizeOptions: ["10", "20", "50", "100"]
-            }}
-            dataSource={posts}
-            renderItem={(post) => (
-                <Post
-                    post={post}
-                    checked={checkedItems[post.id]}
-                    onChange={(e) => onChange(e, post.id)}
+        <>
+            <List
+                header={<h1 className={styles.title}>Посты</h1>}
+                itemLayout="vertical"
+                size="smal"
+                pagination={{
+                    pageSize: pageSize,
+                    showSizeChanger: true,
+                    onShowSizeChange: (current, size) => setPageSize(size),
+                    pageSizeOptions: ["10", "20", "50", "100"]
+                }}
+                dataSource={posts}
+                renderItem={(post) => (
+                    <Post
+                        post={post}
+                        checked={checkedItems[post.id]}
+                        onChange={(e) => onChange(e, post.id)}
+                    />
+                )}
+            />
+            {showButtonsAction &&
+                <ButtonsAction
+                    checkedItems={checkedItems}
+                    setCheckedItems={setCheckedItems}
                 />
-            )}
-        />
+            }
+        </>
     )
 }
 
