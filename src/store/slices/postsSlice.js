@@ -9,8 +9,9 @@ import {
 
 const initialState = {
   posts: [],
+  users: [],
   comments: {},
-  favoritePosts: {}
+  favoritePosts: {},
 };
 
 export const fetchGetPosts = createAsyncThunk('posts/getPosts', async () => {
@@ -25,7 +26,7 @@ export const fetchGetPosts = createAsyncThunk('posts/getPosts', async () => {
     return { ...post, user };
   });
 
-  return postsWithUsers;
+  return { postsWithUsers, users };
 });
 
 export const fetchPatchPost = createAsyncThunk(
@@ -66,13 +67,17 @@ export const postsSlice = createSlice({
       }
     },
     setFavotie: (state, action) => {
-      state.favoritePosts = {...state.favoritePosts, [action.payload.id]: action.payload.bool }
+      state.favoritePosts = {
+        ...state.favoritePosts,
+        [action.payload.id]: action.payload.bool,
+      };
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchGetPosts.fulfilled, (state, action) => {
-        state.posts = action.payload;
+        state.posts = action.payload.postsWithUsers;
+        state.users = action.payload.users;
       })
       .addCase(fetchPatchPost.fulfilled, (state, action) => {
         const updatedPost = action.payload;

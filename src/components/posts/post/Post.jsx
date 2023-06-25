@@ -6,7 +6,6 @@ import { ReactComponent as EditSvg } from '../../../img/edit.svg'
 import { ReactComponent as FavoriteSvg } from '../../../img/favorite.svg'
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from 'react';
 import { fetchDeletePost, fetchGetComments, setFavotie } from '../../../store/slices/postsSlice';
 import { CommentsList } from '../comments/CommentsList';
 import { EditForm } from '../editForm/EditForm';
