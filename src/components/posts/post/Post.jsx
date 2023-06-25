@@ -69,7 +69,7 @@ export const Post = ({ post, checked, onChange }) => {
           checked={checked}
           onChange={onChange}
         >
-          выбрать
+          Checked
         </Checkbox>
         {(isCommentsOpen && comments) && <CommentsList comments={comments} />}
       </List.Item>

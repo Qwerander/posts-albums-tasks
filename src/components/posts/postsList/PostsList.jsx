@@ -31,7 +31,7 @@ export const PostsList = ({ posts }) => {
     return (
         <>
             <List
-                header={<h1 className={styles.title}>Посты</h1>}
+                header={<h1 className={styles.title}>Posts</h1>}
                 itemLayout="vertical"
                 size="smal"
                 pagination={{

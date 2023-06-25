@@ -16,6 +16,7 @@ export const PostsPage = () => {
     const [selectedUserIds, setSelectedUserIds] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [onlyFavorite, setOnlyFavorite] = useState(false)
+    const [reversList, setReversList] = useState(false)
     const posts = useSelector(state => state.posts.posts)
     const favoritePosts = useSelector(state => state.posts.favoritePosts)
 
@@ -37,6 +38,9 @@ export const PostsPage = () => {
         ? filteredPosts.filter(post => favoritePosts.hasOwnProperty(post.id) && favoritePosts[post.id])
         : filteredPosts;
 
+    const reversedPosts = [...filteredPostsByFavorites].reverse();
+    const displayedPosts = reversList ? reversedPosts : filteredPostsByFavorites;
+
     useEffect(() => {
         dispatch(fetchGetPosts())
     }, [dispatch]);
@@ -48,9 +52,10 @@ export const PostsPage = () => {
                     onChangeUser={handleUserSelectChange}
                     onSearch={handleSearchChange}
                     setOnlyFavorite={setOnlyFavorite}
+                    setReversList={setReversList}
                 />
                 <PostsList
-                    posts={filteredPostsByFavorites}
+                    posts={displayedPosts}
                     selectedUserIds={selectedUserIds}
                 />
             </Content>
