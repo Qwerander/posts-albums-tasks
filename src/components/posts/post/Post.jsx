@@ -61,7 +61,7 @@ export const Post = ({ post, checked, onChange }) => {
           />
           : <>
             <p>{post.body}</p>
-            <p className={styles.author}>Author: {post.user.name}</p>
+            <p className={styles.author}>Author: {post.user?.name}</p>
           </>
         }
 

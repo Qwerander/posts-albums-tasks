@@ -1,36 +1,21 @@
-import { Button } from 'antd';
-import { Header } from 'antd/es/layout/layout';
-import styles from './header.module.css'
+import { Menu } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-export const HeaderComponent = () => {
+export const Header = () => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
   return (
-    <Header className={styles.header}>
-      <Button
-        type="link"
-        onClick={() => navigate('/posts')}
-        className={pathname === '/posts' ? styles.active : null}
-      >
+    <Menu selectedKeys={[pathname]} mode="horizontal">
+      <Menu.Item key="/posts" onClick={() => navigate('/posts')}>
         Посты
-      </Button>
-      <Button
-        type="link"
-        onClick={() => navigate('albums')}
-        className={pathname === '/albums' ? styles.active : null}
-      >
+      </Menu.Item>
+      <Menu.Item key="/albums" onClick={() => navigate('/albums')}>
         Фото
-      </Button>
-      <Button
-        type="link"
-        onClick={() => navigate('/todos')}
-        className={pathname === '/todos' ? styles.active : null}
-      >
+      </Menu.Item>
+      <Menu.Item key="/todos" onClick={() => navigate('/todos')}>
         Задачи
-      </Button>
-    </Header>
+      </Menu.Item>
+    </Menu>
   );
-
 };

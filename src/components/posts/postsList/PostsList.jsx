@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Post } from "../post/Post"
-import styles from './postsLists.module.css'
 import { List } from 'antd';
 import { useEffect } from "react";
 import { ButtonsAction } from "../buttonsAction/ButtonsAction";
@@ -31,7 +30,7 @@ export const PostsList = ({ posts }) => {
     return (
         <>
             <List
-                header={<h1 className={styles.title}>Posts</h1>}
+                header={<h1 style={{fontSize: '36px', textAlign: 'center'}}>Posts</h1>}
                 itemLayout="vertical"
                 size="smal"
                 pagination={{

@@ -24,7 +24,6 @@ export const EditForm = ({ id, title, body, author, userId, close }) => {
         }
         dispatch(fetchPatchPost({id, data}))
         dispatch(changeUserName({id, newName: values.author}))
-        console.log(values);
         close(false)
     };
 

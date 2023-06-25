@@ -2,14 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetPosts } from "../../store/slices/postsSlice";
 import { PostsList } from "../../components/posts/postsList/PostsList";
-import { Layout, List, Space } from 'antd';
-import styles from './postsPage.module.css'
+import { Button, Layout, Space } from 'antd';
 import { useState } from "react";
 import { Filters } from "../../components/posts/filters/Filters";
-const { Content } = Layout;
-// const {  Avatar, List, Space  } = antd;
-
-
+import { AddNewPost } from "../../components/posts/modal/AddNewPost";
 
 export const PostsPage = () => {
     const dispatch = useDispatch();
@@ -17,6 +13,7 @@ export const PostsPage = () => {
     const [searchValue, setSearchValue] = useState('');
     const [onlyFavorite, setOnlyFavorite] = useState(false)
     const [reversList, setReversList] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const posts = useSelector(state => state.posts.posts)
     const favoritePosts = useSelector(state => state.posts.favoritePosts)
 
@@ -47,7 +44,10 @@ export const PostsPage = () => {
 
     return (
         <Layout>
-            <Content className={styles.content}>
+            <Space direction="vertical" style={{marginBottom: '12px', padding: '50px 25px 50px'}}>
+                <Button type="primary" onClick={() => setIsModalOpen(true)}>
+                    + Add new post
+                </Button>
                 <Filters
                     onChangeUser={handleUserSelectChange}
                     onSearch={handleSearchChange}
@@ -58,7 +58,11 @@ export const PostsPage = () => {
                     posts={displayedPosts}
                     selectedUserIds={selectedUserIds}
                 />
-            </Content>
+            </Space>
+            <AddNewPost
+                isOpen={isModalOpen}
+                setIsopen={setIsModalOpen}
+            />
         </Layout>
 
     )

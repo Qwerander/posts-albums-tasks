@@ -5,6 +5,7 @@ import {
   getPosts,
   getUsers,
   patchPost,
+  postPost,
 } from '../../api/api';
 
 const initialState = {
@@ -28,6 +29,14 @@ export const fetchGetPosts = createAsyncThunk('posts/getPosts', async () => {
 
   return { postsWithUsers, users };
 });
+
+export const fetchPostPost = createAsyncThunk(
+  'posts/postPost',
+  async (data) => {
+    const response = await postPost(data);
+    return response.data;
+  }
+);
 
 export const fetchPatchPost = createAsyncThunk(
   'posts/patchPost',
@@ -87,6 +96,13 @@ export const postsSlice = createSlice({
         if (index !== -1) {
           state.posts[index] = { ...state.posts[index], ...updatedPost };
         }
+      })
+      .addCase(fetchPostPost.fulfilled, (state, action) => {
+        const newPost = action.payload;
+        const author = state.users.find(
+          (user) => user.id === newPost.userId
+        );
+        state.posts.push({ ...newPost, user: author })
       })
       .addCase(fetchDeletePost.fulfilled, (state, action) => {
         const deletedPostId = action.payload;

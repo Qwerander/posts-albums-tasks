@@ -16,6 +16,12 @@ export const getPosts = async () => {
   return response;
 };
 
+// добавление поста
+export const postPost = async (data) => {
+  const response = await apiRequest.post('/posts', data);
+  return response;
+};
+
 // изменение поста по id
 export const patchPost = async (id, data) => {
   const response = await apiRequest.patch(`/posts/${id}`, data);

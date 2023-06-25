@@ -26,7 +26,7 @@ export const UserSelect = ({onChangeUser}) => {
 
 
 const tagRender = (props) => {
-    const { label, value, closable, onClose } = props;
+    const { label, closable, onClose } = props;
     const onPreventMouseDown = (event) => {
       event.preventDefault();
       event.stopPropagation();
