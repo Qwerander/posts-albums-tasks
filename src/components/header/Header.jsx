@@ -8,13 +8,13 @@ export const Header = () => {
   return (
     <Menu selectedKeys={[pathname]} mode="horizontal">
       <Menu.Item key="/posts" onClick={() => navigate('/posts')}>
-        Посты
+        Posts
       </Menu.Item>
       <Menu.Item key="/albums" onClick={() => navigate('/albums')}>
-        Фото
+        Albums
       </Menu.Item>
       <Menu.Item key="/todos" onClick={() => navigate('/todos')}>
-        Задачи
+        Todos
       </Menu.Item>
     </Menu>
   );

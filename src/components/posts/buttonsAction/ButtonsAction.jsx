@@ -4,26 +4,8 @@ import { fetchDeletePost, setFavotie } from '../../../store/slices/postsSlice';
 import { useState } from 'react';
 import { ModalDeleteConfirum } from '../modal/ModalDeleteConfirum';
 
-export const ButtonsAction = ({ checkedItems, setCheckedItems }) => {
-    const dispatch = useDispatch();
+export const ButtonsAction = ({ deleteConfirum, handleFavotite }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
-
-    const filtredId = Object.keys(checkedItems).filter(key => checkedItems[key] === true)
-
-    const deleteConfirum = () => {
-        const promises = []
-        filtredId.forEach(id => {
-            dispatch(fetchDeletePost(+id))
-        })
-        Promise.all(promises)
-        setCheckedItems({})
-    }
-    const handleFavotite = () => {
-        filtredId.forEach(id => {
-            dispatch(setFavotie({ id: +id, bool: true }))
-        })
-        setCheckedItems({})
-    }
 
     return (
         <>

@@ -39,8 +39,10 @@ export const PostsPage = () => {
     const displayedPosts = reversList ? reversedPosts : filteredPostsByFavorites;
 
     useEffect(() => {
-        dispatch(fetchGetPosts())
-    }, [dispatch]);
+        if (!posts.length) {
+            dispatch(fetchGetPosts())
+        }
+    }, [dispatch, posts]);
 
     return (
         <Layout>

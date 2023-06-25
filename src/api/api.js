@@ -38,6 +38,15 @@ export const getAlbums = async () => {
   const response = await apiRequest.get('/albums');
   return response;
 };
+// изменение альбомапо id
+export const patchAlbum = async (id, data) => {
+  const response = await apiRequest.patch(`/albums/${id}`, data);
+  return response;
+};
+// удфление альбома по id
+export const deleteAlbum = async (id) => {
+  await apiRequest.delete(`/albums/${id}`);
+};
 
 // получение задач
 export const getTodos = async () => {
