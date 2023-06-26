@@ -26,6 +26,7 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     background-color: white;
     padding: 10px!important;
+    position: relative;
 }
 
 .link {
@@ -35,4 +36,14 @@
 
 .link:hover {
     color: blue;
+}
+
+.edit {
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    border-radius: 10px;
 }

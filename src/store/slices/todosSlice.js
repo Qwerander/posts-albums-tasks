@@ -41,15 +41,7 @@ export const todosSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchGetTodos.fulfilled, (state, action) => {
-        state.todos = action.payload.sort((a, b) => {
-          if (a.completed && !b.completed) {
-            return 1;
-          } else if (!a.completed && b.completed) {
-            return -1;
-          } else {
-            return 0;
-          }
-        });
+        state.todos = action.payload
       })
       .addCase(fetchPostTodo.fulfilled, (state, action) => {
         state.todos.push(action.payload);

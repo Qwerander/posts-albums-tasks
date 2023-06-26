@@ -44,13 +44,15 @@ export const Album = ({ album, checked, onChange }) => {
             </Link>}
         />
         {isEditMode
-          ? <EditForm
-            id={album.id}
-            userId={album.userId}
-            title={album.title}
-            author={album.user.name}
-            close={toggleIEditMode}
-          />
+          ? <div className={styles.edit}>
+            <EditForm
+              id={album.id}
+              userId={album.userId}
+              title={album.title}
+              author={album.user.name}
+              close={toggleIEditMode}
+            />
+          </div>
           : <p className={styles.author}>Author: {album.user?.name}</p>
         }
 

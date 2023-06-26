@@ -68,13 +68,6 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    changeUserName: (state, action) => {
-      const { id, newName } = action.payload;
-      const postIndex = state.posts.findIndex((post) => post.id === id);
-      if (postIndex !== -1) {
-        state.posts[postIndex].user.name = newName;
-      }
-    },
     setFavotie: (state, action) => {
       state.favoritePosts = {
         ...state.favoritePosts,
@@ -90,11 +83,14 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPatchPost.fulfilled, (state, action) => {
         const updatedPost = action.payload;
+        const user = state.users.find(
+          (user) => user.id === updatedPost.userId
+        );
         const index = state.posts.findIndex(
           (post) => post.id === updatedPost.id
         );
         if (index !== -1) {
-          state.posts[index] = { ...state.posts[index], ...updatedPost };
+          state.posts[index] = { ...updatedPost, user }
         }
       })
       .addCase(fetchPostPost.fulfilled, (state, action) => {
@@ -114,6 +110,6 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { changeUserName, setFavotie } = postsSlice.actions;
+export const { setFavotie } = postsSlice.actions;
 
 export default postsSlice.reducer;

@@ -1,7 +1,7 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import React from 'react';
-import { useDispatch} from "react-redux";
-import { changeUserName, fetchPatchPost } from '../../../store/slices/postsSlice';
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPostPost, fetchPatchPost } from '../../../store/slices/postsSlice';
 
 const layout = {
     labelCol: { span: 8 },
@@ -12,29 +12,31 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 
-export const EditForm = ({ id, title, body, author, userId, close }) => {
-    const dispatch = useDispatch()
+export const EditForm = ({ id, title = '', body = '', author = '', close }) => {
+    const dispatch = useDispatch();
+    const users = useSelector(state => state.posts.users)
     const [form] = Form.useForm();
 
-
-    const onFinish = (values) => {
-        const data = {
-            title: values.title,
-            body: values.body
+    const handleFinish = (values) => {
+        const { author, ...rest } = values;
+        if (id) {
+            dispatch(fetchPatchPost({ id, data: { ...rest, userId: Number(author) } }))
+        } else {
+            dispatch(fetchPostPost({ ...rest, userId: Number(author) }));
         }
-        dispatch(fetchPatchPost({id, data}))
-        dispatch(changeUserName({id, newName: values.author}))
-        close(false)
+        form.resetFields();
+        close(false);
     };
 
-    return (    
+    return (
         <Form
             {...layout}
             form={form}
             name="control-hooks"
-            onFinish={onFinish}
+            onFinish={handleFinish}
             style={{ maxWidth: '100%' }}
             initialValues={{ title, body, author }}
+
         >
             <Form.Item name="title" label="Title" >
                 <Input />
@@ -43,17 +45,22 @@ export const EditForm = ({ id, title, body, author, userId, close }) => {
                 <Input />
             </Form.Item>
             <Form.Item name="author" label="Author">
-                <Input />
+                <Select>
+                    {users.map(user => (
+                        <Select.Option key={user.id} value={user.id}>
+                            {user.name}
+                        </Select.Option>
+                    ))}
+                </Select>
             </Form.Item>
             <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit">
                     Save
                 </Button>
-                <Button htmlType="button" onClick={() => close(false)}>
-                    Don't save
+                <Button type="default" onClick={() => close(false)}>
+                    Cancel
                 </Button>
             </Form.Item>
         </Form>
     );
 };
-

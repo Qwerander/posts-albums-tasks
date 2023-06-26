@@ -3,7 +3,7 @@ import { List, Checkbox } from 'antd';
 import { ReactComponent as DeleteSvg } from '../../../img/delete.svg'
 import { ReactComponent as EditSvg } from '../../../img/edit.svg'
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ModalDeleteConfirum } from '../../posts/modal/ModalDeleteConfirum';
 import { fetchDeleteTodo, fetchPatchTodo } from '../../../store/slices/todosSlice';

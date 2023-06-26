@@ -1,6 +1,6 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
 import React from 'react';
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeUserName, fetchPatchAlbum } from '../../../store/slices/albumsSlice';
 
 const layout = {
@@ -12,21 +12,19 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 
-export const EditForm = ({ id, title, author, userId, close }) => {
+export const EditForm = ({ id, title, author, close }) => {
     const dispatch = useDispatch()
+    const users = useSelector(state => state.albums.users)
     const [form] = Form.useForm();
 
 
     const onFinish = (values) => {
-        const data = {
-            title: values.title,
-        }
-        dispatch(fetchPatchAlbum({id, data}))
-        dispatch(changeUserName({id, newName: values.author}))
+        const { author, ...rest } = values;
+        dispatch(fetchPatchAlbum({ id, data: { ...rest, userId: Number(author) } }))
         close(false)
     };
 
-    return (    
+    return (
         <Form
             {...layout}
             form={form}
@@ -39,7 +37,13 @@ export const EditForm = ({ id, title, author, userId, close }) => {
                 <Input />
             </Form.Item>
             <Form.Item name="author" label="Author">
-                <Input />
+                <Select>
+                    {users.map(user => (
+                        <Select.Option key={user.id} value={user.id}>
+                            {user.name}
+                        </Select.Option>
+                    ))}
+                </Select>
             </Form.Item>
             <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit">

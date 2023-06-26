@@ -12,7 +12,7 @@ export const AlbumsPage = () => {
   const [searchValue, setSearchValue] = useState('');
   const [onlyFavorite, setOnlyFavorite] = useState(false)
   const [reversList, setReversList] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [sortType, setSortType] = useState(3);
   const { albums, users } = useSelector(state => state.albums)
   const favoriteAlbums = useSelector(state => state.albums.favoriteAlbums)
 
@@ -25,6 +25,10 @@ export const AlbumsPage = () => {
     setSearchValue(value);
   };
 
+  const onSortChange = (e) => {
+    setSortType(e.target.value);
+  };
+
   const filteredAlbums = albums.filter(album => {
     const isTitleMatched = album.title.toLowerCase().includes(searchValue.toLowerCase());
     const isUserMatched = selectedUserIds.length === 0 || selectedUserIds.includes(album.userId);
@@ -35,8 +39,21 @@ export const AlbumsPage = () => {
     ? filteredAlbums.filter(album => favoriteAlbums.hasOwnProperty(album.id) && favoriteAlbums[album.id])
     : filteredAlbums;
 
-  const reversedAlbums = [...filteredAlbumsByFavorites].reverse();
-  const displayedAlbums = reversList ? reversedAlbums : filteredAlbumsByFavorites;
+
+  let sortedList = filteredAlbumsByFavorites;
+  switch (sortType) {
+    case 3:
+      sortedList = filteredAlbumsByFavorites.sort((a, b) => a.id - b.id);
+      break;
+    case 4:
+      sortedList = filteredAlbumsByFavorites.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    default:
+      sortedList = filteredAlbumsByFavorites;
+  }
+
+  const reversedAlbums = [...sortedList].reverse();
+  const displayedAlbums = reversList ? reversedAlbums : sortedList;
 
   useEffect(() => {
     if (!albums?.length) {
@@ -53,6 +70,8 @@ export const AlbumsPage = () => {
           setOnlyFavorite={setOnlyFavorite}
           setReversList={setReversList}
           users={users}
+          onSortChange={onSortChange}
+          sortType={sortType}
         />
         <AlbumsList
           albums={displayedAlbums}

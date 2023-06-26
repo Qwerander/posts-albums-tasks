@@ -20,7 +20,6 @@ export const TodosPage = () => {
   };
 
   const onSortChange = (e) => {
-    console.log('radio checked', e.target.value);
     setSortType(e.target.value);
   };
 

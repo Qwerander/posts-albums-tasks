@@ -63,19 +63,12 @@ export const fetchGetPhotos = createAsyncThunk(
 
     return photosByAlbum;
   }
-)
+);
 
 export const albumsSlice = createSlice({
   name: 'albums',
   initialState,
   reducers: {
-    changeUserName: (state, action) => {
-      const { id, newName } = action.payload;
-      const albumIndex = state.albums.findIndex((album) => album.id === id);
-      if (albumIndex !== -1) {
-        state.albums[albumIndex].user.name = newName;
-      }
-    },
     setFavotie: (state, action) => {
       state.favoriteAlbums = {
         ...state.favoriteAlbums,
@@ -91,11 +84,14 @@ export const albumsSlice = createSlice({
       })
       .addCase(fetchPatchAlbum.fulfilled, (state, action) => {
         const updatedAlbum = action.payload;
+        const user = state.users.find(
+          (user) => user.id === updatedAlbum.userId
+        );
         const index = state.albums.findIndex(
           (album) => album.id === updatedAlbum.id
         );
         if (index !== -1) {
-          state.albums[index] = { ...state.albums[index], ...updatedAlbum };
+          state.albums[index] = { ...updatedAlbum, user };
         }
       })
       .addCase(fetchDeleteAlbum.fulfilled, (state, action) => {

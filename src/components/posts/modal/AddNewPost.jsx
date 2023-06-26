@@ -1,6 +1,6 @@
 import { Modal } from 'antd';
 import React from 'react';
-import { NewPostForm } from '../newPost/NewPostForm';
+import { EditForm } from '../editForm/EditForm';
 
 
 export const AddNewPost = ({ isOpen, setIsopen }) => {
@@ -12,8 +12,8 @@ export const AddNewPost = ({ isOpen, setIsopen }) => {
             footer={null}
             onCancel={() => setIsopen(false)}
         >
-            <NewPostForm
-                setIsopen={setIsopen}
+            <EditForm
+                close={setIsopen}
             />
         </Modal>
     );

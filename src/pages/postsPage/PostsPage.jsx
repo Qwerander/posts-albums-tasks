@@ -14,6 +14,7 @@ export const PostsPage = () => {
     const [onlyFavorite, setOnlyFavorite] = useState(false)
     const [reversList, setReversList] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [sortType, setSortType] = useState(3);
     const { posts, users } = useSelector(state => state.posts)
     const favoritePosts = useSelector(state => state.posts.favoritePosts)
 
@@ -25,6 +26,10 @@ export const PostsPage = () => {
         setSearchValue(value);
     };
 
+    const onSortChange = (e) => {
+        setSortType(e.target.value);
+      };
+
     const filteredPosts = posts.filter(post => {
         const isTitleMatched = post.title.toLowerCase().includes(searchValue.toLowerCase());
         const isUserMatched = selectedUserIds.length === 0 || selectedUserIds.includes(post.userId);
@@ -35,8 +40,20 @@ export const PostsPage = () => {
         ? filteredPosts.filter(post => favoritePosts.hasOwnProperty(post.id) && favoritePosts[post.id])
         : filteredPosts;
 
-    const reversedPosts = [...filteredPostsByFavorites].reverse();
-    const displayedPosts = reversList ? reversedPosts : filteredPostsByFavorites;
+    let sortedList = filteredPostsByFavorites;
+    switch (sortType) {
+        case 3:
+            sortedList = filteredPostsByFavorites.sort((a, b) => a.id - b.id);
+            break;
+        case 4:
+            sortedList = filteredPostsByFavorites.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        default:
+            sortedList = filteredPostsByFavorites;
+    }
+
+    const reversedPosts = [...sortedList].reverse();
+    const displayedPosts = reversList ? reversedPosts : sortedList;
 
     useEffect(() => {
         if (!posts?.length) {
@@ -56,6 +73,8 @@ export const PostsPage = () => {
                     setOnlyFavorite={setOnlyFavorite}
                     setReversList={setReversList}
                     users={users}
+                    onSortChange={onSortChange}
+                    sortType={sortType}
                 />
                 <PostsList
                     posts={displayedPosts}
