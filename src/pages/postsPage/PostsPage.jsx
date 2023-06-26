@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetPosts, restoreFavoritePosts } from "../../store/slices/postsSlice";
 import { PostsList } from "../../components/posts/postsList/PostsList";
 import { Button, Layout, Space } from 'antd';
 import { useState } from "react";
 import { Filters } from "../../components/posts/filters/Filters";
 import { AddNewPost } from "../../components/posts/modal/AddNewPost";
+import { fetchGetPosts } from "../../components/posts/api/store/fetchMethods";
+import { restoreFavoritePosts } from "../../components/posts/api/store/postsSlice";
 
 export const PostsPage = () => {
     const dispatch = useDispatch();

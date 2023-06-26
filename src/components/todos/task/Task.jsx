@@ -5,8 +5,8 @@ import { ReactComponent as EditSvg } from '../../../img/edit.svg'
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
-import { fetchDeleteTodo, fetchPatchTodo } from '../../../store/slices/todosSlice';
 import { EditForm } from '../editForm/EditForm';
+import { fetchDeleteTodo, fetchPatchTodo } from '../api/store/fetchMethods';
 
 export const Task = ({ task, checked, onChange }) => {
     const dispatch = useDispatch();

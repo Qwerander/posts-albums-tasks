@@ -6,9 +6,10 @@ import { ReactComponent as FavoriteSvg } from '../../../img/favorite.svg'
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { EditForm } from '../editForm/EditForm';
-import { fetchDeleteAlbum, setFavotie } from '../../../store/slices/albumsSlice';
 import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
 import { Link } from 'react-router-dom';
+import { setFavotie } from '../api/store/albumsSlice';
+import { fetchDeleteAlbum } from '../api/store/fetchMethods';
 
 export const Album = ({ album, checked, onChange }) => {
 	const dispatch = useDispatch();

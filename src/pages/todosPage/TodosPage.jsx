@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetTodos } from "../../store/slices/todosSlice";
 import { Button, Layout, Space } from "antd";
 import { TodosList } from "../../components/todos/todosList/TodosList";
 import { AddNewTask } from "../../components/todos/modal/AddNewTask";
 import { Filters } from "../../components/todos/filters/Filters";
+import { fetchGetTodos } from "../../components/todos/api/store/fetchMethods";
 
 export const TodosPage = () => {
 	const dispatch = useDispatch();

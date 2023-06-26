@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, List } from 'antd';
 import { useDispatch } from "react-redux";
 import { Task } from "../task/Task";
-import { fetchDeleteTodo } from "../../../store/slices/todosSlice";
 import { ModalConfirum } from "../../share/modalConfirum/ModalConfirum";
+import { fetchDeleteTodo } from "../api/store/fetchMethods";
 
 export const TodosList = ({ todos }) => {
     const dispatch = useDispatch();

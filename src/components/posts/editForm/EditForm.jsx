@@ -1,7 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
-
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPostPost, fetchPatchPost } from '../../../store/slices/postsSlice';
+import { fetchPatchPost, fetchPostPost } from '../api/store/fetchMethods';
 
 const layout = {
     labelCol: { span: 8 },

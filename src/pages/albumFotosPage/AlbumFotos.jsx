@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchGetPhotos } from '../../store/slices/albumsSlice';
 import { AlbumMini } from '../../components/album/albumMini/albumMini';
 import { Layout, Space } from 'antd';
+import { fetchGetPhotos } from '../../components/albums/api/store/fetchMethods';
 
 export const AlbumFotos = () => {
 	const dispatch = useDispatch();

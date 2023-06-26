@@ -2,9 +2,10 @@ import { useState } from "react";
 import { List } from 'antd';
 import { useEffect } from "react";
 import { Album } from "../album/Album";
-import { fetchDeleteAlbum, setFavotie } from "../../../store/slices/albumsSlice";
 import { useDispatch } from "react-redux";
 import { ButtonsAction } from "../../share/buttonsAction/ButtonsAction";
+import { fetchDeleteAlbum } from "../api/store/fetchMethods";
+import { setFavotie } from "../api/store/albumsSlice";
 
 export const AlbumsList = ({ albums }) => {
     const dispatch = useDispatch();

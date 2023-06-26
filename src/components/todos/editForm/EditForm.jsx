@@ -1,6 +1,6 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useDispatch } from "react-redux";
-import { fetchPatchTodo, fetchPostTodo } from '../../../store/slices/todosSlice';
+import { fetchPatchTodo, fetchPostTodo } from '../api/store/fetchMethods';
 
 const layout = {
     labelCol: { span: 8 },

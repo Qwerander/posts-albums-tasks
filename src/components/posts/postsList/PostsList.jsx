@@ -4,7 +4,8 @@ import { List } from 'antd';
 import { useEffect } from "react";
 import { ButtonsAction } from "../../share/buttonsAction/ButtonsAction";
 import { useDispatch } from "react-redux";
-import { fetchDeletePost, setFavotie } from "../../../store/slices/postsSlice";
+import { fetchDeletePost } from "../api/store/fetchMethods";
+import { setFavotie } from "../api/store/postsSlice";
 
 export const PostsList = ({ posts }) => {
     const dispatch = useDispatch();

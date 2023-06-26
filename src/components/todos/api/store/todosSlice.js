@@ -1,38 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { deleteTodo, getTodos, patchTodo, postTodo } from '../../api/api';
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  fetchDeleteTodo,
+  fetchGetTodos,
+  fetchPatchTodo,
+  fetchPostTodo,
+} from './fetchMethods';
 
 const initialState = {
   todos: [],
 };
-
-export const fetchGetTodos = createAsyncThunk('todos/getTodos', async () => {
-  const response = await getTodos();
-  return response.data;
-});
-
-export const fetchPatchTodo = createAsyncThunk(
-  'todos/postTodo',
-  async ({ id, data }) => {
-    const response = await patchTodo(id, data);
-    return response.data;
-  }
-);
-
-export const fetchPostTodo = createAsyncThunk(
-  'todos/patchTodo',
-  async (data) => {
-    const response = await postTodo(data);
-    return response.data;
-  }
-);
-
-export const fetchDeleteTodo = createAsyncThunk(
-  'todos/deleteTodo',
-  async (id) => {
-    await deleteTodo(id);
-    return { id };
-  }
-);
 
 export const todosSlice = createSlice({
   name: 'todos',
@@ -60,7 +36,5 @@ export const todosSlice = createSlice({
       });
   },
 });
-
-// export const { } = todosSlice.actions;
 
 export default todosSlice.reducer;

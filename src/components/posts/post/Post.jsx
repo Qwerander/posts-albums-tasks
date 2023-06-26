@@ -6,10 +6,11 @@ import { ReactComponent as EditSvg } from '../../../img/edit.svg'
 import { ReactComponent as FavoriteSvg } from '../../../img/favorite.svg'
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDeletePost, fetchGetComments, setFavotie } from '../../../store/slices/postsSlice';
 import { CommentsList } from '../comments/CommentsList';
 import { EditForm } from '../editForm/EditForm';
 import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
+import { setFavotie } from '../api/store/postsSlice';
+import { fetchDeletePost, fetchGetComments } from '../api/store/fetchMethods';
 
 export const Post = ({ post, checked, onChange }) => {
   const dispatch = useDispatch();

@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchgetAlbums, restoreFavoriteAlbums } from "../../store/slices/albumsSlice";
 import { AlbumsList } from "../../components/albums/albumsList/AlbumsList";
 import { Layout, Space } from 'antd';
 import { useState } from "react";
 import { Filters } from "../../components/posts/filters/Filters";
+import { restoreFavoriteAlbums } from "../../components/albums/api/store/albumsSlice";
+import { fetchgetAlbums } from "../../components/albums/api/store/fetchMethods";
 
 export const AlbumsPage = () => {
 	const dispatch = useDispatch();

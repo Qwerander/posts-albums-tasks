@@ -1,7 +1,6 @@
 import { Button, Form, Input, Select } from 'antd';
-
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPatchAlbum } from '../../../store/slices/albumsSlice';
+import { fetchPatchAlbum } from '../api/store/fetchMethods';
 
 const layout = {
     labelCol: { span: 8 },
@@ -16,7 +15,6 @@ export const EditForm = ({ id, title, author, close }) => {
     const dispatch = useDispatch()
     const users = useSelector(state => state.albums.users)
     const [form] = Form.useForm();
-
 
     const onFinish = (values) => {
         const { author, ...rest } = values;
