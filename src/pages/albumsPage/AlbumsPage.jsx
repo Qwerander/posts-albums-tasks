@@ -5,7 +5,6 @@ import { AlbumsList } from "../../components/albums/albumsList/AlbumsList";
 import { Layout, Space } from 'antd';
 import { useState } from "react";
 import { Filters } from "../../components/posts/filters/Filters";
-import { Outlet } from "react-router-dom";
 
 export const AlbumsPage = () => {
   const dispatch = useDispatch();

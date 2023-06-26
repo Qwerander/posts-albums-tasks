@@ -8,7 +8,7 @@ export const SearchTitle = ({ onSearch }) => {
         onSearch(e.target.value);
     };
     return (
-        <Search placeholder="Search post by title" onChange={handleSearchChange} style={{ width: '100%' }} />
+        <Search placeholder="Search by title" onChange={handleSearchChange} style={{ width: '100%' }} />
     )
 }
 
