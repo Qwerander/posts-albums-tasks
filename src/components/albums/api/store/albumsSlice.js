@@ -11,6 +11,7 @@ const initialState = {
   users: [],
   photos: {},
   favoriteAlbums: {},
+  error: null,
 };
 
 export const albumsSlice = createSlice({
@@ -41,6 +42,9 @@ export const albumsSlice = createSlice({
         state.albums = action.payload.albumsWithUsers;
         state.users = action.payload.users;
       })
+      .addCase(fetchgetAlbums.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchPatchAlbum.fulfilled, (state, action) => {
         const updatedAlbum = action.payload;
         const user = state.users.find(
@@ -53,14 +57,23 @@ export const albumsSlice = createSlice({
           state.albums[index] = { ...updatedAlbum, user };
         }
       })
+      .addCase(fetchPatchAlbum.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchDeleteAlbum.fulfilled, (state, action) => {
         const deletedAlbumId = action.payload;
         state.albums = state.albums.filter(
           (album) => album.id !== deletedAlbumId
         );
       })
+      .addCase(fetchDeleteAlbum.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchGetPhotos.fulfilled, (state, action) => {
         state.photos = action.payload;
+      })
+      .addCase(fetchGetPhotos.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   },
 });

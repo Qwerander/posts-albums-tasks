@@ -12,6 +12,7 @@ const initialState = {
   users: [],
   comments: {},
   favoritePosts: {},
+  error: null,
 };
 
 export const postsSlice = createSlice({
@@ -42,6 +43,9 @@ export const postsSlice = createSlice({
         state.posts = action.payload.postsWithUsers;
         state.users = action.payload.users;
       })
+      .addCase(fetchGetPosts.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchPatchPost.fulfilled, (state, action) => {
         const updatedPost = action.payload;
         const user = state.users.find((user) => user.id === updatedPost.userId);
@@ -52,17 +56,29 @@ export const postsSlice = createSlice({
           state.posts[index] = { ...updatedPost, user };
         }
       })
+      .addCase(fetchPatchPost.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchPostPost.fulfilled, (state, action) => {
         const newPost = action.payload;
         const author = state.users.find((user) => user.id === newPost.userId);
         state.posts.push({ ...newPost, user: author });
       })
+      .addCase(fetchPostPost.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchDeletePost.fulfilled, (state, action) => {
         const deletedPostId = action.payload;
         state.posts = state.posts.filter((post) => post.id !== deletedPostId);
       })
+      .addCase(fetchDeletePost.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
       .addCase(fetchGetComments.fulfilled, (state, action) => {
         state.comments = { ...state.comments, ...action.payload };
+      })
+      .addCase(fetchGetComments.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   },
 });
