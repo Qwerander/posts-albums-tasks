@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Album } from "../album/Album";
 import { fetchDeleteAlbum, setFavotie } from "../../../store/slices/albumsSlice";
 import { useDispatch } from "react-redux";
-import { ButtonsAction } from "../../posts/buttonsAction/ButtonsAction";
+import { ButtonsAction } from "../../share/buttonsAction/ButtonsAction";
 
 export const AlbumsList = ({ albums }) => {
     const dispatch = useDispatch();

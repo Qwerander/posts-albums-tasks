@@ -2,9 +2,9 @@ import { Modal } from 'antd';
 import React  from 'react';
 
 
-export const ModalDeleteConfirum = ({ isOpen, setIsopen, deleteConfirum }) => {
+export const ModalConfirum = ({ isOpen, setIsopen, confirum, okType = 'danger', okText = 'Delete' }) => {
     const handleComfirum = () => {
-        deleteConfirum()
+        confirum()
         setIsopen(false)
     }
     return (
@@ -12,9 +12,9 @@ export const ModalDeleteConfirum = ({ isOpen, setIsopen, deleteConfirum }) => {
             title="Are you sure?"
             open={isOpen}
             onOk={handleComfirum}
-            okType='danger'
+            okType={okType}
             onCancel={() => setIsopen(false)}
-            okText="Delete"
+            okText={okText}
             cancelText="Cancel"
         >
         </Modal>

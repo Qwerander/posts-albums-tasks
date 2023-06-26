@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDeletePost, fetchGetComments, setFavotie } from '../../../store/slices/postsSlice';
 import { CommentsList } from '../comments/CommentsList';
 import { EditForm } from '../editForm/EditForm';
-import { ModalDeleteConfirum } from '../modal/ModalDeleteConfirum';
+import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
 
 export const Post = ({ post, checked, onChange }) => {
   const dispatch = useDispatch();
@@ -73,8 +73,8 @@ export const Post = ({ post, checked, onChange }) => {
         </Checkbox>
         {(isCommentsOpen && comments) && <CommentsList comments={comments} />}
       </List.Item>
-      <ModalDeleteConfirum
-        deleteConfirum={deleteConfirum}
+      <ModalConfirum
+        confirum={deleteConfirum}
         isOpen={isModalOpen}
         setIsopen={setIsModalOpen}
       />

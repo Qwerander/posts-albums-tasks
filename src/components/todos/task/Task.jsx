@@ -5,7 +5,7 @@ import { ReactComponent as EditSvg } from '../../../img/edit.svg'
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 
-import { ModalDeleteConfirum } from '../../posts/modal/ModalDeleteConfirum';
+import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
 import { fetchDeleteTodo, fetchPatchTodo } from '../../../store/slices/todosSlice';
 import { EditForm } from '../editForm/EditForm';
 
@@ -68,8 +68,8 @@ export const Task = ({ task, checked, onChange }) => {
                     </>
                 }
             </List.Item>
-            <ModalDeleteConfirum
-                deleteConfirum={deleteConfirum}
+            <ModalConfirum
+                confirum={deleteConfirum}
                 isOpen={isModalOpen}
                 setIsopen={setIsModalOpen}
             />

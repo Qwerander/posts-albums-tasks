@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Post } from "../post/Post"
 import { List } from 'antd';
 import { useEffect } from "react";
-import { ButtonsAction } from "../buttonsAction/ButtonsAction";
+import { ButtonsAction } from "../../share/buttonsAction/ButtonsAction";
 import { useDispatch } from "react-redux";
 import { fetchDeletePost, setFavotie } from "../../../store/slices/postsSlice";
 

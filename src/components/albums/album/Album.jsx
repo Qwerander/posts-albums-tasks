@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { EditForm } from '../editForm/EditForm';
 import { fetchDeleteAlbum, setFavotie } from '../../../store/slices/albumsSlice';
-import { ModalDeleteConfirum } from '../../posts/modal/ModalDeleteConfirum';
+import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
 import { Link } from 'react-router-dom';
 
 
@@ -63,8 +63,8 @@ export const Album = ({ album, checked, onChange }) => {
           Checked
         </Checkbox>
       </List.Item>
-      <ModalDeleteConfirum
-        deleteConfirum={deleteConfirum}
+      <ModalConfirum
+        confirum={deleteConfirum}
         isOpen={isModalOpen}
         setIsopen={setIsModalOpen}
       />

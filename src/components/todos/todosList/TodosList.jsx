@@ -3,7 +3,7 @@ import { Button, List } from 'antd';
 import { useDispatch } from "react-redux";
 import { Task } from "../task/Task";
 import { fetchDeleteTodo } from "../../../store/slices/todosSlice";
-import { ModalDeleteConfirum } from "../../posts/modal/ModalDeleteConfirum";
+import { ModalConfirum } from "../../share/modalConfirum/ModalConfirum";
 
 
 export const TodosList = ({ todos }) => {
@@ -60,8 +60,8 @@ export const TodosList = ({ todos }) => {
                         Delete
                     </Button>
 
-                    <ModalDeleteConfirum
-                        deleteConfirum={deleteConfirum}
+                    <ModalConfirum
+                        confirum={deleteConfirum}
                         isOpen={isModalOpen}
                         setIsopen={setIsModalOpen}
                     />
