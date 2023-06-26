@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, List } from 'antd';
 import { useDispatch } from "react-redux";
 import { Task } from "../task/Task";
@@ -18,6 +18,22 @@ export const TodosList = ({ todos }) => {
             [itemId]: e.target.checked
         })
     };
+
+    useEffect(() => {
+        const checkedItemsFromStorage = JSON.parse(localStorage.getItem('checkedTodos'))
+        if (checkedItemsFromStorage) {
+            setCheckedItems(checkedItemsFromStorage)
+        }
+        const pageSizeFromStorage = localStorage.getItem('todosPageSize')
+        if (pageSizeFromStorage) {
+            setPageSize(pageSizeFromStorage)
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('todosPageSize', pageSize)
+        localStorage.setItem('checkedTodos', JSON.stringify(checkedItems))
+    }, [checkedItems, pageSize])
 
     const filtredId = Object.keys(checkedItems).filter(key => checkedItems[key] === true)
 

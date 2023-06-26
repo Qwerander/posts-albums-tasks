@@ -69,11 +69,22 @@ export const albumsSlice = createSlice({
   name: 'albums',
   initialState,
   reducers: {
+    restoreFavoriteAlbums: (state) => {
+      const favoriteAlbumsString = localStorage.getItem('favoriteAlbums');
+      const favoriteAlbums = JSON.parse(favoriteAlbumsString);
+      if (favoriteAlbums) {
+        state.favoriteAlbums = favoriteAlbums;
+      }
+    },
     setFavotie: (state, action) => {
       state.favoriteAlbums = {
         ...state.favoriteAlbums,
         [action.payload.id]: action.payload.bool,
       };
+      localStorage.setItem(
+        'favoriteAlbums',
+        JSON.stringify(state.favoriteAlbums)
+      );
     },
   },
   extraReducers: (builder) => {
@@ -106,6 +117,6 @@ export const albumsSlice = createSlice({
   },
 });
 
-export const { changeUserName, setFavotie } = albumsSlice.actions;
+export const { restoreFavoriteAlbums, setFavotie } = albumsSlice.actions;
 
 export default albumsSlice.reducer;

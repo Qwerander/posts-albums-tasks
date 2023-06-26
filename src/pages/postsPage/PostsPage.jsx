@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGetPosts } from "../../store/slices/postsSlice";
+import { fetchGetPosts, restoreFavoritePosts } from "../../store/slices/postsSlice";
 import { PostsList } from "../../components/posts/postsList/PostsList";
 import { Button, Layout, Space } from 'antd';
 import { useState } from "react";
@@ -56,6 +56,7 @@ export const PostsPage = () => {
     const displayedPosts = reversList ? reversedPosts : sortedList;
 
     useEffect(() => {
+        dispatch(restoreFavoritePosts())
         if (!posts?.length) {
             dispatch(fetchGetPosts())
         }

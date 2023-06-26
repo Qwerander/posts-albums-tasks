@@ -68,11 +68,22 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
+    restoreFavoritePosts: (state) => {
+      const favoritePostsString = localStorage.getItem('favoritePosts');
+      const favoritePosts = JSON.parse(favoritePostsString);
+      if (favoritePosts) {
+        state.favoritePosts = favoritePosts;
+      }
+    },
     setFavotie: (state, action) => {
       state.favoritePosts = {
         ...state.favoritePosts,
         [action.payload.id]: action.payload.bool,
       };
+      localStorage.setItem(
+        'favoritePosts',
+        JSON.stringify(state.favoritePosts)
+      );
     },
   },
   extraReducers: (builder) => {
@@ -106,6 +117,6 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { setFavotie } = postsSlice.actions;
+export const { setFavotie, restoreFavoritePosts } = postsSlice.actions;
 
 export default postsSlice.reducer;

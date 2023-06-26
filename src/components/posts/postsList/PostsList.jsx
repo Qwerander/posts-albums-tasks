@@ -20,15 +20,20 @@ export const PostsList = ({ posts }) => {
     };
 
     useEffect(() => {
-        const checkedItemsFromStorage = JSON.parse(localStorage.getItem('checkedItems'))
+        const checkedItemsFromStorage = JSON.parse(localStorage.getItem('checkedPosts'))
         if (checkedItemsFromStorage) {
             setCheckedItems(checkedItemsFromStorage)
+        }
+        const pageSizeFromStorage = localStorage.getItem('postsPageSize')
+        if (pageSizeFromStorage) {
+            setPageSize(pageSizeFromStorage)
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('checkedItems', JSON.stringify(checkedItems))
-    }, [checkedItems])
+        localStorage.setItem('postsPageSize', pageSize)
+        localStorage.setItem('checkedPosts', JSON.stringify(checkedItems))
+    }, [checkedItems, pageSize])
 
     const filtredId = Object.keys(checkedItems).filter(key => checkedItems[key] === true)
 

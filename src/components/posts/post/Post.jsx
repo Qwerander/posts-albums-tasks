@@ -17,7 +17,7 @@ export const Post = ({ post, checked, onChange }) => {
   const [isEditMode, toggleIEditMode] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const isFavorite = useSelector(state => state.posts.favoritePosts[post.id])
-  const comments = useSelector(state => state.posts.comments[`${post.id}`])
+  const comments = useSelector(state => state.posts.comments[post.id])
 
   const handleFavoriteClick = () => {
     dispatch(setFavotie({ id: post.id, bool: !isFavorite }))
@@ -28,7 +28,6 @@ export const Post = ({ post, checked, onChange }) => {
     if (!comments?.length) {
       dispatch(fetchGetComments(post.id))
     }
-
   };
 
   const deleteConfirum = () => {

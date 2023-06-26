@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchgetAlbums } from "../../store/slices/albumsSlice";
+import { fetchgetAlbums, restoreFavoriteAlbums } from "../../store/slices/albumsSlice";
 import { AlbumsList } from "../../components/albums/albumsList/AlbumsList";
 import { Layout, Space } from 'antd';
 import { useState } from "react";
@@ -54,6 +54,7 @@ export const AlbumsPage = () => {
 	const displayedAlbums = reversList ? reversedAlbums : sortedList;
 
 	useEffect(() => {
+		dispatch(restoreFavoriteAlbums())
 		if (!albums?.length) {
 			dispatch(fetchgetAlbums())
 		}

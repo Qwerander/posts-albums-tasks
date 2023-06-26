@@ -24,11 +24,16 @@ export const AlbumsList = ({ albums }) => {
         if (checkedItemsFromStorage) {
             setCheckedItems(checkedItemsFromStorage)
         }
+        const pageSizeFromStorage = localStorage.getItem('albumsPageSize')
+        if (pageSizeFromStorage) {
+            setPageSize(pageSizeFromStorage)
+        }
     }, [])
 
     useEffect(() => {
+        localStorage.setItem('albumsPageSize', pageSize)
         localStorage.setItem('checkedAlbums', JSON.stringify(checkedItems))
-    }, [checkedItems])
+    }, [checkedItems, pageSize])
 
     const filtredId = Object.keys(checkedItems).filter(key => checkedItems[key] === true)
 
