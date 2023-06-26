@@ -1,5 +1,4 @@
 import { Button, Checkbox, Form, Input } from 'antd';
-import React from 'react';
 import { useDispatch } from "react-redux";
 import { fetchPatchTodo, fetchPostTodo } from '../../../store/slices/todosSlice';
 
@@ -15,7 +14,6 @@ const tailLayout = {
 export const EditForm = ({ id, title, completed, close }) => {
     const dispatch = useDispatch()
     const [form] = Form.useForm();
-
 
     const onFinish = (values) => {
         const data = {

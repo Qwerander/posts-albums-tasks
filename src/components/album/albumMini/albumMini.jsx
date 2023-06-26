@@ -1,6 +1,4 @@
-
 import { Button, List, Space } from 'antd';
-
 import { PhotoMini } from "../photoMini/PhotoMini";
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +19,6 @@ export const AlbumMini = ({ album }) => {
                     <PhotoMini photo={photo} />
                 )}
             />
-
         </Space>
     )
 }

@@ -64,7 +64,6 @@ export const Post = ({ post, checked, onChange }) => {
             <p className={styles.author}>Author: {post.user?.name}</p>
           </>
         }
-
         <Checkbox
           checked={checked}
           onChange={onChange}

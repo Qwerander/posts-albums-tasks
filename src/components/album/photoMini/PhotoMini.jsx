@@ -4,11 +4,11 @@ import { ModalPhoto } from '../modalPhoto/ModalPhoto';
 
 export const PhotoMini = ({ photo }) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
+
     return (
         <>
             <List.Item
                 key={photo.id}
-
             >
                 <div
                     style={{ cursor: 'pointer' }}
@@ -16,7 +16,6 @@ export const PhotoMini = ({ photo }) => {
                 >
                     <img src={photo.thumbnailUrl} alt={photo.title} />
                     <p style={{ maxWidth: '150px' }} >{photo.title}</p>
-
                 </div>
             </List.Item>
             <ModalPhoto

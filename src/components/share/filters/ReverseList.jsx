@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Checkbox } from 'antd';
 
 export const ReverseList = ({ setReversList }) => {
@@ -6,7 +6,6 @@ export const ReverseList = ({ setReversList }) => {
         setReversList(e.target.checked);
     };
     return (
-
         <Checkbox onChange={onChange}>Reverse list</Checkbox>
     )
 }

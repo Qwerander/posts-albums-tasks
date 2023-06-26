@@ -83,22 +83,18 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPatchPost.fulfilled, (state, action) => {
         const updatedPost = action.payload;
-        const user = state.users.find(
-          (user) => user.id === updatedPost.userId
-        );
+        const user = state.users.find((user) => user.id === updatedPost.userId);
         const index = state.posts.findIndex(
           (post) => post.id === updatedPost.id
         );
         if (index !== -1) {
-          state.posts[index] = { ...updatedPost, user }
+          state.posts[index] = { ...updatedPost, user };
         }
       })
       .addCase(fetchPostPost.fulfilled, (state, action) => {
         const newPost = action.payload;
-        const author = state.users.find(
-          (user) => user.id === newPost.userId
-        );
-        state.posts.push({ ...newPost, user: author })
+        const author = state.users.find((user) => user.id === newPost.userId);
+        state.posts.push({ ...newPost, user: author });
       })
       .addCase(fetchDeletePost.fulfilled, (state, action) => {
         const deletedPostId = action.payload;

@@ -8,8 +8,8 @@ export const ModalPhoto = ({ isOpen, photo, title, setIsopen }) => {
             width={`fit-content`}
             onCancel={() => setIsopen(false)}
         >
-            <div style={{width: '100%'}}>
-                <img style={{width: '100%'}} src={photo} alt={title} />
+            <div style={{ width: '100%' }}>
+                <img style={{ width: '100%' }} src={photo} alt={title} />
             </div>
         </Modal>
     )

@@ -30,7 +30,6 @@ export const PostsList = ({ posts }) => {
         localStorage.setItem('checkedItems', JSON.stringify(checkedItems))
     }, [checkedItems])
 
-
     const filtredId = Object.keys(checkedItems).filter(key => checkedItems[key] === true)
 
     const deleteConfirum = () => {

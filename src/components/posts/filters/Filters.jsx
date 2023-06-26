@@ -1,9 +1,9 @@
 import { Space } from 'antd';
-import { SearchTitle } from "../../filters/SearchTitle"
-import { ShowFavorite } from "../../filters/ShowFavorite"
-import { UserSelect } from "../../filters/UserSelect"
-import { ReverseList } from '../../filters/ReverseList';
-import { SortGroup } from '../../filters/SortGroup';
+import { SearchTitle } from "../../share/filters/SearchTitle"
+import { ShowFavorite } from "../../share/filters/ShowFavorite"
+import { UserSelect } from "../../share/filters/UserSelect"
+import { ReverseList } from '../../share/filters/ReverseList';
+import { SortGroup } from '../../share/filters/SortGroup';
 
 export const Filters = ({ onChangeUser, onSearch, setOnlyFavorite, setReversList, users, onSortChange, sortType }) => {
     return (

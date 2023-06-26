@@ -10,64 +10,61 @@ import { fetchDeleteAlbum, setFavotie } from '../../../store/slices/albumsSlice'
 import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
 import { Link } from 'react-router-dom';
 
-
 export const Album = ({ album, checked, onChange }) => {
-  const dispatch = useDispatch();
-  const [isEditMode, toggleIEditMode] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const isFavorite = useSelector(state => state.albums.favoriteAlbums[album.id])
+	const dispatch = useDispatch();
+	const [isEditMode, toggleIEditMode] = useState(false)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const isFavorite = useSelector(state => state.albums.favoriteAlbums[album.id])
 
-  const handleFavoriteClick = () => {
-    dispatch(setFavotie({ id: album.id, bool: !isFavorite }))
-  };
+	const handleFavoriteClick = () => {
+		dispatch(setFavotie({ id: album.id, bool: !isFavorite }))
+	};
 
+	const deleteConfirum = () => {
+		dispatch(fetchDeleteAlbum(album.id))
+	}
 
-  const deleteConfirum = () => {
-    dispatch(fetchDeleteAlbum(album.id))
-  }
-
-  return (
-    <>
-      <List.Item
-        className={styles.item}
-        key={album.id}
-        actions={[
-          <EditSvg onClick={() => toggleIEditMode(prev => !prev)} style={isEditMode ? { fill: '#1677ff' } : null} />,
-          <DeleteSvg onClick={() => setIsModalOpen(true)} />,
-          <FavoriteSvg onClick={handleFavoriteClick} style={isFavorite ? { fill: '#1677ff' } : null} />,
-        ]}
-      >
-        <List.Item.Meta
-          title={!isEditMode &&
-            <Link className={styles.link} to={`${album.id}`}>
-              {`${album.id}. ${album.title}`}
-            </Link>}
-        />
-        {isEditMode
-          ? <div className={styles.edit}>
-            <EditForm
-              id={album.id}
-              userId={album.userId}
-              title={album.title}
-              author={album.user.name}
-              close={toggleIEditMode}
-            />
-          </div>
-          : <p className={styles.author}>Author: {album.user?.name}</p>
-        }
-
-        <Checkbox
-          checked={checked}
-          onChange={onChange}
-        >
-          Checked
-        </Checkbox>
-      </List.Item>
-      <ModalConfirum
-        confirum={deleteConfirum}
-        isOpen={isModalOpen}
-        setIsopen={setIsModalOpen}
-      />
-    </>
-  )
+	return (
+		<>
+			<List.Item
+				className={styles.item}
+				key={album.id}
+				actions={[
+					<EditSvg onClick={() => toggleIEditMode(prev => !prev)} style={isEditMode ? { fill: '#1677ff' } : null} />,
+					<DeleteSvg onClick={() => setIsModalOpen(true)} />,
+					<FavoriteSvg onClick={handleFavoriteClick} style={isFavorite ? { fill: '#1677ff' } : null} />,
+				]}
+			>
+				<List.Item.Meta
+					title={!isEditMode &&
+						<Link className={styles.link} to={`${album.id}`}>
+							{`${album.id}. ${album.title}`}
+						</Link>}
+				/>
+				{isEditMode
+					? <div className={styles.edit}>
+						<EditForm
+							id={album.id}
+							userId={album.userId}
+							title={album.title}
+							author={album.user.name}
+							close={toggleIEditMode}
+						/>
+					</div>
+					: <p className={styles.author}>Author: {album.user?.name}</p>
+				}
+				<Checkbox
+					checked={checked}
+					onChange={onChange}
+				>
+					Checked
+				</Checkbox>
+			</List.Item>
+			<ModalConfirum
+				confirum={deleteConfirum}
+				isOpen={isModalOpen}
+				setIsopen={setIsModalOpen}
+			/>
+		</>
+	)
 }

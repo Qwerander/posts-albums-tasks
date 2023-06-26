@@ -5,7 +5,6 @@ import { Task } from "../task/Task";
 import { fetchDeleteTodo } from "../../../store/slices/todosSlice";
 import { ModalConfirum } from "../../share/modalConfirum/ModalConfirum";
 
-
 export const TodosList = ({ todos }) => {
     const dispatch = useDispatch();
     const [pageSize, setPageSize] = useState(10)
@@ -20,7 +19,6 @@ export const TodosList = ({ todos }) => {
         })
     };
 
-
     const filtredId = Object.keys(checkedItems).filter(key => checkedItems[key] === true)
 
     const deleteConfirum = () => {
@@ -31,7 +29,6 @@ export const TodosList = ({ todos }) => {
         Promise.all(promises)
         setCheckedItems({})
     }
-
 
     return (
         <>

@@ -1,6 +1,5 @@
-
 import { Input } from 'antd';
-import React from 'react';
+
 const { Search } = Input;
 
 export const SearchTitle = ({ onSearch }) => {

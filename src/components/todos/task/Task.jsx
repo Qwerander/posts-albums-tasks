@@ -4,7 +4,6 @@ import { ReactComponent as DeleteSvg } from '../../../img/delete.svg'
 import { ReactComponent as EditSvg } from '../../../img/edit.svg'
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
-
 import { ModalConfirum } from '../../share/modalConfirum/ModalConfirum';
 import { fetchDeleteTodo, fetchPatchTodo } from '../../../store/slices/todosSlice';
 import { EditForm } from '../editForm/EditForm';
@@ -41,31 +40,29 @@ export const Task = ({ task, checked, onChange }) => {
                         completed={task.completed}
                         close={toggleIEditMode}
                     />
-                    : <>
-                        <div className={styles.task}>
-                            <p className={task.completed ? styles.done : null}>
-                                {task.id}. {task.title}
-                            </p>
-                            <div className={styles.actions}>
-                                <EditSvg onClick={() => toggleIEditMode(prev => !prev)} style={isEditMode ? { fill: '#1677ff' } : null} />
-                                <DeleteSvg onClick={() => setIsModalOpen(true)} />
-                                <div className={styles.checkboxes}>
-                                    <Checkbox
-                                        checked={checked}
-                                        onChange={onChange}
-                                    >
-                                        Checked
-                                    </Checkbox>
-                                    <Checkbox
-                                        checked={task.completed}
-                                        onChange={(e) => handleCompleted(e, task.id)}
-                                    >
-                                        Completed
-                                    </Checkbox>
-                                </div>
+                    : <div className={styles.task}>
+                        <p className={task.completed ? styles.done : null}>
+                            {task.id}. {task.title}
+                        </p>
+                        <div className={styles.actions}>
+                            <EditSvg onClick={() => toggleIEditMode(prev => !prev)} style={isEditMode ? { fill: '#1677ff' } : null} />
+                            <DeleteSvg onClick={() => setIsModalOpen(true)} />
+                            <div className={styles.checkboxes}>
+                                <Checkbox
+                                    checked={checked}
+                                    onChange={onChange}
+                                >
+                                    Checked
+                                </Checkbox>
+                                <Checkbox
+                                    checked={task.completed}
+                                    onChange={(e) => handleCompleted(e, task.id)}
+                                >
+                                    Completed
+                                </Checkbox>
                             </div>
                         </div>
-                    </>
+                    </div>
                 }
             </List.Item>
             <ModalConfirum

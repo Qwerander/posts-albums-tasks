@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetPosts } from "../../store/slices/postsSlice";
 import { PostsList } from "../../components/posts/postsList/PostsList";
@@ -86,8 +86,5 @@ export const PostsPage = () => {
                 setIsopen={setIsModalOpen}
             />
         </Layout>
-
     )
 }
-
-

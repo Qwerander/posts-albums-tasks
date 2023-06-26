@@ -15,7 +15,6 @@ export const ButtonsAction = ({ deleteConfirum, handleFavotite }) => {
                 <Button type="dashed" onClick={() => setIsModalOpenFavorite(true)}>
                     To favorite
                 </Button>
-
             </Space>
             <ModalConfirum
                 confirum={deleteConfirum}

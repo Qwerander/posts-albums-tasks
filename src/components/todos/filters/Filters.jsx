@@ -1,7 +1,7 @@
 import { Space } from 'antd';
-import { SearchTitle } from '../../filters/SearchTitle';
-import { ReverseList } from '../../filters/ReverseList';
-import { SortGroup } from '../../filters/SortGroup';
+import { SearchTitle } from '../../share/filters/SearchTitle';
+import { ReverseList } from '../../share/filters/ReverseList';
+import { SortGroup } from '../../share/filters/SortGroup';
 
 export const Filters = ({ onSortChange, onSearch, sortType, setReversList }) => {
     return (

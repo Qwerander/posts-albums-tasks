@@ -6,6 +6,7 @@
     padding: 5px;
     border-radius: 10px;
 }
+
 .item svg:hover {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
@@ -25,7 +26,7 @@
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     background-color: white;
-    padding: 10px!important;
+    padding: 10px !important;
     position: relative;
 }
 

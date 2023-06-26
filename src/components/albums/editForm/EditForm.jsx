@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select } from 'antd';
-import React from 'react';
+
 import { useDispatch, useSelector } from "react-redux";
-import { changeUserName, fetchPatchAlbum } from '../../../store/slices/albumsSlice';
+import { fetchPatchAlbum } from '../../../store/slices/albumsSlice';
 
 const layout = {
     labelCol: { span: 8 },

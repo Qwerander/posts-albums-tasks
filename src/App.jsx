@@ -6,28 +6,26 @@ import { AlbumsPage } from './pages/albumsPage/AlbumsPage';
 import { TodosPage } from './pages/todosPage/TodosPage';
 import { AlbumFotos } from './pages/albumFotosPage/AlbumFotos';
 
-
-
 export const App = () => {
-  const navigate = useNavigate();
-  const { pathname } = useLocation()
+	const navigate = useNavigate();
+	const { pathname } = useLocation()
 
-  useEffect(() => {
-    if (pathname === '/') {
-      navigate('todos')
-    }
-  }, [navigate, pathname]);
+	useEffect(() => {
+		if (pathname === '/') {
+			navigate('todos')
+		}
+	}, [navigate, pathname]);
 
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="posts" element={<PostsPage />} />
-        <Route path="albums" element={<AlbumsPage />} />
-        <Route path="albums/:id" element={<AlbumFotos />} />
-        <Route path="todos" element={<TodosPage />} />
-      </Routes>
-    </>
+	return (
+		<>
+			<Header />
+			<Routes>
+				<Route path="posts" element={<PostsPage />} />
+				<Route path="albums" element={<AlbumsPage />} />
+				<Route path="albums/:id" element={<AlbumFotos />} />
+				<Route path="todos" element={<TodosPage />} />
+			</Routes>
+		</>
 
-  );
+	);
 };

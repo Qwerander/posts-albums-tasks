@@ -1,5 +1,5 @@
 import { Button, Form, Input, Select } from 'antd';
-import React from 'react';
+
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPostPost, fetchPatchPost } from '../../../store/slices/postsSlice';
 
@@ -36,7 +36,6 @@ export const EditForm = ({ id, title = '', body = '', author = '', close }) => {
             onFinish={handleFinish}
             style={{ maxWidth: '100%' }}
             initialValues={{ title, body, author }}
-
         >
             <Form.Item name="title" label="Title" >
                 <Input />
