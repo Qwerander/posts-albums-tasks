@@ -12,7 +12,7 @@ export const App = () => {
 
 	useEffect(() => {
 		if (pathname === '/') {
-			navigate('todos')
+			navigate('posts')
 		}
 	}, [navigate, pathname]);
 
