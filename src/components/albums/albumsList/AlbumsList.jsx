@@ -60,6 +60,7 @@ export const AlbumsList = ({ albums }) => {
                 grid={{
                     gutter: 16,
                     column: 3,
+                    xs: 1,
                     sm: 1,
                     md: 2,
                 }}

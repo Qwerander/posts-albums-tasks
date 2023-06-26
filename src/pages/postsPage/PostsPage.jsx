@@ -7,6 +7,7 @@ import { Filters } from "../../components/posts/filters/Filters";
 import { AddNewPost } from "../../components/posts/modal/AddNewPost";
 import { fetchGetPosts } from "../../components/posts/api/store/fetchMethods";
 import { restoreFavoritePosts } from "../../components/posts/api/store/postsSlice";
+import { displayedList } from "../../components/share/displayedList";
 
 export const PostsPage = () => {
     const dispatch = useDispatch();
@@ -37,24 +38,9 @@ export const PostsPage = () => {
         return isTitleMatched && isUserMatched;
     });
 
-    const filteredPostsByFavorites = onlyFavorite
+    const filteredList = onlyFavorite
         ? filteredPosts.filter(post => favoritePosts.hasOwnProperty(post.id) && favoritePosts[post.id])
         : filteredPosts;
-
-    let sortedList = filteredPostsByFavorites;
-    switch (sortType) {
-        case 3:
-            sortedList = filteredPostsByFavorites.sort((a, b) => a.id - b.id);
-            break;
-        case 4:
-            sortedList = filteredPostsByFavorites.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-        default:
-            sortedList = filteredPostsByFavorites;
-    }
-
-    const reversedPosts = [...sortedList].reverse();
-    const displayedPosts = reversList ? reversedPosts : sortedList;
 
     useEffect(() => {
         dispatch(restoreFavoritePosts())
@@ -79,7 +65,7 @@ export const PostsPage = () => {
                     sortType={sortType}
                 />
                 <PostsList
-                    posts={displayedPosts}
+                    posts={displayedList(filteredList, sortType, reversList)}
                     selectedUserIds={selectedUserIds}
                 />
             </Space>

@@ -5,6 +5,7 @@ import { TodosList } from "../../components/todos/todosList/TodosList";
 import { AddNewTask } from "../../components/todos/modal/AddNewTask";
 import { Filters } from "../../components/todos/filters/Filters";
 import { fetchGetTodos } from "../../components/todos/api/store/fetchMethods";
+import { displayedList } from "../../components/share/displayedList";
 
 export const TodosPage = () => {
 	const dispatch = useDispatch();
@@ -27,27 +28,6 @@ export const TodosPage = () => {
 		return isTitleMatched
 	});
 
-	let sortedList = filteredList;
-	switch (sortType) {
-		case 1:
-			sortedList = filteredList.sort((a, b) => a.completed - b.completed);
-			break;
-		case 2:
-			sortedList = filteredList.sort((a, b) => b.completed - a.completed);
-			break;
-		case 3:
-			sortedList = filteredList.sort((a, b) => a.id - b.id);
-			break;
-		case 4:
-			sortedList = filteredList.sort((a, b) => a.title.localeCompare(b.title));
-			break;
-		default:
-			sortedList = filteredList;
-	}
-
-	const reversedList = [...sortedList].reverse();
-	const displayedTodos = reversList ? reversedList : sortedList;
-
 	useEffect(() => {
 		if (!todos?.length) {
 			dispatch(fetchGetTodos());
@@ -67,7 +47,7 @@ export const TodosPage = () => {
 					sortType={sortType}
 				/>
 				<TodosList
-					todos={displayedTodos}
+					todos={displayedList(filteredList, sortType, reversList)}
 				/>
 			</Space>
 			<AddNewTask

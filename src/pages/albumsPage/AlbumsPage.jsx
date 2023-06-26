@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Filters } from "../../components/posts/filters/Filters";
 import { restoreFavoriteAlbums } from "../../components/albums/api/store/albumsSlice";
 import { fetchgetAlbums } from "../../components/albums/api/store/fetchMethods";
+import { displayedList } from "../../components/share/displayedList";
 
 export const AlbumsPage = () => {
 	const dispatch = useDispatch();
@@ -35,24 +36,9 @@ export const AlbumsPage = () => {
 		return isTitleMatched && isUserMatched;
 	});
 
-	const filteredAlbumsByFavorites = onlyFavorite
+	const filteredList = onlyFavorite
 		? filteredAlbums.filter(album => favoriteAlbums.hasOwnProperty(album.id) && favoriteAlbums[album.id])
 		: filteredAlbums;
-
-	let sortedList = filteredAlbumsByFavorites;
-	switch (sortType) {
-		case 3:
-			sortedList = filteredAlbumsByFavorites.sort((a, b) => a.id - b.id);
-			break;
-		case 4:
-			sortedList = filteredAlbumsByFavorites.sort((a, b) => a.title.localeCompare(b.title));
-			break;
-		default:
-			sortedList = filteredAlbumsByFavorites;
-	}
-
-	const reversedAlbums = [...sortedList].reverse();
-	const displayedAlbums = reversList ? reversedAlbums : sortedList;
 
 	useEffect(() => {
 		dispatch(restoreFavoriteAlbums())
@@ -74,7 +60,7 @@ export const AlbumsPage = () => {
 					sortType={sortType}
 				/>
 				<AlbumsList
-					albums={displayedAlbums}
+					albums={displayedList(filteredList, sortType, reversList)}
 				/>
 			</Space>
 		</Layout>
