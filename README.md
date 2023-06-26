@@ -1,5 +1,7 @@
 # Posts, Albums, Tasks
 
+## готовое приложение по адресу ниже
+## http://qwerander.github.io/posts-albums-tasks
 
 ## Available Scripts
 
