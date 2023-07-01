@@ -2,6 +2,8 @@
 
 ## готовое приложение по адресу ниже
 ## https://qwerander.github.io/posts-albums-tasks/
+## такой же проект на Type Script
+## https://github.com/Qwerander/posts-albums-tasks-ts/
 
 ## Available Scripts
 
